@@ -6,6 +6,19 @@
     <body>
         <h1>Social Platform</h1>
         <p>Welcome, {{request.user.username}}!</p>
-        <a href="/login/">Login</a>
+        <a href="/profile/">My Profile</a>
+        <a href="/logout/">Logout</a>
+        <a href="/create-post/">Create Post</a>
+        <h2>Posts</h2>
+        {% for post in posts %}
+            <div>
+                <h3>{{post.author.username}}</h3>
+                <p>{{post.content}}</p>
+                <a href="/like/{{post.id}}/">Like</a>
+                <p>Likes: {{post.likes.count}}</p>
+                <small>{{ post.created_at|date:"d M Y, h:i A" }}</small>
+            </div>
+            <hr>
+        {% endfor %}
     </body>
 </html>
